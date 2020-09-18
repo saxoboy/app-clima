@@ -2,7 +2,7 @@
 
 Aplicación que consulta el clima actual de una ciudad específica. Así como también muestra el clima en los próximos 8 días y como estuvo el clima 5 diás atrás.
 
-Desarrollado con la información del API de [Open Weather Map](https://openweathermap.org.)
+Desarrollado con la información del API de [Open Weather Map](https://openweathermap.org.). Colorar el API KEY en "src/context/context.js" línea 5
 
 Proyecto Construido con [Create React App](https://github.com/facebook/create-react-app).
 
