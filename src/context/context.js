@@ -41,16 +41,17 @@ function cityReducer(state, { type, payload }) {
         lati: payload.coord_lat,
       };
     case "CITY_DATA_WEATHER":
-      return {
+      return {  
         ...state,
         citySelect: payload,
         long: payload.coord_lon,
-        lati: payload.coord_lat,
+        lati: payload.coord_lat,  
       };
     case "CITY_SEVEN_DAYS":
       return {
         ...state,
         cityPost: payload,
+        cityPre: []
       };
     case "CITY_HISTORY":
       const dia = payload;
@@ -134,10 +135,6 @@ const WeatherProvider = ({ children }) => {
 
   //CONSULTA CLIMA CIUDAD
   const cityWeater = async (cityData) => {
-
-    //borro datos historicos
-    //const historicos = state.cityPre;
-    
     if (cityData) {
       const resultClimaCiudad = await getWeatherCity(cityData);
 
