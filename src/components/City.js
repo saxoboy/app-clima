@@ -34,7 +34,7 @@ const City = () => {
     <div className="bg-gray-300 mt-4 p-4">
       <div className="flex flex-wrap mb-4">
         <div className="w-full sm:w-1/2 md:w-1/4">
-          <div className="sm:w-48 sm:h-48 h-40 w-30 rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0 mx-auto">
+          <div className="sm:w-48 sm:h-48 h-40 w-30 rounded-full bg-indigo-100 flex-shrink-0 mx-auto">
             <img
               src={`https://openweathermap.org/img/wn/${weather_icon}@4x.png`}
               alt={weather_main}
@@ -46,7 +46,7 @@ const City = () => {
           </p>
         </div>
         <div className="w-full sm:w-1/2 md:w-2/4 px-8">
-          <p className="pb-2 pt-2">{day}</p>
+          <p className="pb-2 pt-2 text-lg">{day}</p>
           <p className="pb-4">{horaInCity}</p>
           <h2 className="text-gray-900 text-4xl title-font font-medium mb-2 text-center">
             {name}
@@ -96,7 +96,3 @@ const City = () => {
 };
 
 export default City;
-
-export const CityLoading = () => (
-  <div className="bg-gray-300 mt-4 p-4">Loading...</div>
-);

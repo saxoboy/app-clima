@@ -1,21 +1,17 @@
-import React, { createContext, useReducer, useEffect } from "react";
+import React, { createContext, useReducer, useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment-timezone";
 
-//const appKey = "3fa9bb164448889050ff88e6d6c5d541"; // israelherrerae
 const appKey = "99e5a727399494fe7125f8efc37bc137";
-
-//const formato = "dddd Do MMMM YYYY"; // September 16th 2020
 const formatoHora = "h:mm a";
 
 //Estado Inicial
 const initialState = {
   name: "Londres",
-  //long: -0.13,
-  //lati: 51.51,
   citySelect: null,
   cityPost: null,
   cityPre: [],
+  loading: true
 };
 
 // Context
@@ -26,8 +22,8 @@ const Context = createContext({
   citySelect: null,
   cityPost: null,
   cityPre: [],
+  loading: true,
   cityWeater: () => {},
-  cityWeaterSevenDays: () => {},
 });
 
 //Reducer
@@ -37,6 +33,7 @@ function cityReducer(state, { type, payload }) {
       return {
         ...state,
         citySelect: payload,
+        name: payload.name,
         long: payload.coord_lon,
         lati: payload.coord_lat,
       };
@@ -44,6 +41,7 @@ function cityReducer(state, { type, payload }) {
       return {  
         ...state,
         citySelect: payload,
+        name: payload.name,
         long: payload.coord_lon,
         lati: payload.coord_lat,  
       };
@@ -83,7 +81,6 @@ async function getWeatherCity(nameCity) {
       main_temp_max: parseFloat(main.temp_max).toFixed(0),
       main_humidity: main.humidity,
       dt,
-      //dt: moment(dt * 1000).format(formato),
       sys_sunrise: sys.sunrise,
       sys_sunset: sys.sunset,
       name,
@@ -207,7 +204,6 @@ const WeatherProvider = ({ children }) => {
   //ejecutamos cityWeather
   useEffect(() => {
     cityWeater();
-    //cityWeaterSevenDays();
   }, []);
 
   return (
@@ -219,6 +215,7 @@ const WeatherProvider = ({ children }) => {
         citySelect: state.citySelect,
         cityPost: state.cityPost,
         cityPre: state.cityPre,
+        loading: state.loading,
         cityWeater,
       }}
     >
@@ -228,75 +225,3 @@ const WeatherProvider = ({ children }) => {
 };
 
 export { Context, WeatherProvider };
-
-/*
-//CONSULTA 7 DIAS DE CLIMA
-  const cityWeaterSevenDays = async (long, lati) => {
-    if (!long || !lati) {
-      const long = state.long;
-      const lati = state.lati;
-      const resultClimaSevenDays = await getWeatherCitySevenDays(long, lati); // clima 7 dias
-      dispatch({
-        type: "CITY_SEVEN_DAYS_DEFAULT",
-        payload: resultClimaSevenDays,
-      });
-    } else {
-      const resultClimaSevenDays = await getWeatherCitySevenDays(long, lati);
-      dispatch({
-        type: "CITY_SEVEN_DAYS",
-        payload: resultClimaSevenDays,
-      });  
-    }
-  };
-
-
-
-// destructuro datos
-    //const { coord, weather, main, dt, sys, name } = climaHoy.data;
-
-    // console.table({
-    //   ciudad: name,
-    //   coodenadas: coord.lon +" - "+ coord.lat,
-    //   temperatura: parseFloat(main.temp).toFixed(0),
-    //   temp_max: parseFloat(main.temp_max).toFixed(0),
-    //   temp_mini: parseFloat(main.temp_min).toFixed(0),
-    //   fechaCurrent: moment(new Date(dt * 1000)).format(formato),
-    //   Hora_Sol: moment(new Date(sys.sunrise * 1000)).format(formatoHora),
-    //   Hora_Luna: moment(new Date(sys.sunset * 1000)).format(formatoHora),
-    //   clima: weather[0].main+" - "+ weather[0].description,
-    // });
-
-*/
-
-/*
-
-//   isDarkTheme: true,
-//   toggleTheme: () => {},
-//   lang: "es",
-//   toggleLang: () => {},
-
-
-//const [city, setCity] = useState("Cuenca"); // ciudad a consultar
-//   const [dark, setDark] = useState(true); // theme
-//   const [lang, setLang] = useState("es"); // language
-  
-  //theme
-//   const toggleTheme = () => {
-//     setDark(!dark);
-//   };
-  //language
-//   const toggleLang = () => {
-//     setLang(lang);
-//   };
-
-
-
-value={{
-        isDarkTheme: dark,
-        lang,        
-        toggleTheme,
-        toggleLang,
-        city,
-        cityWeater,
-      }}
-*/
