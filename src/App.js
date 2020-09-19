@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ClockLoader from "react-spinners/ClockLoader";
 import { Context } from "./context/context";
 import Header from "./components/Header";
@@ -8,8 +8,13 @@ import CityWeaterSevenDays from "./components/CityWeaterSevenDays";
 import CityWeaterHistory from "./components/CityWeaterHistory";
 
 function App() {
-  const { loading, citySelect, cityPost, cityPre } = useContext(Context);
+  const { name, loading, citySelect, cityPost, cityPre, cityWeater } = useContext(Context);
 
+  useEffect(() => {
+    cityWeater(name)
+    // eslint-disable-next-line 
+  },[]) 
+  
   //Loading
   const Loading = () => {
     return (
@@ -19,7 +24,7 @@ function App() {
         </div>
       </div>
     );
-  } 
+  };
 
   return (
     <div className="bg-gray-400 font-body">
@@ -35,7 +40,7 @@ function App() {
       <footer className="bg-gray-700">
         <div className="container mx-auto">
           <p className="text-center text-white py-4 text-base">
-            Aqui el footer
+            © 2020 Israel Herrera E.
           </p>
         </div>
       </footer>
