@@ -13,4 +13,4 @@ UI Interface de [Tailwincss](https://tailwindcss.com/)
 Se utilizo además [Moment JS](https://momentjs.com/), [Weather Icons React](https://najens.github.io/weather-icons-react/) y [React Spinner](http://www.davidhu.io/react-spinners/)
 
 ### DEMO
-[Tailwincss](https://tailwindcss.com/)
+[DEMO](https://epic-lewin-9ee40f.netlify.app/)

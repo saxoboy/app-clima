@@ -115,7 +115,7 @@ async function getWeatherCitySevenDays(long, lati) {
 async function getWeatherCityHistory(day, long, lati) {
   try {
     //Api Clima Ciudad por 5 dias atrás
-    const urlHistory = `http://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${lati}&lon=${long}&dt=${day}&appid=${appKey}&units=metric`;
+    const urlHistory = `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${lati}&lon=${long}&dt=${day}&appid=${appKey}&units=metric`;
     const climaHistory = await axios.get(urlHistory);
     const { current } = climaHistory.data;
     return {
@@ -142,7 +142,6 @@ const WeatherProvider = ({ children }) => {
 
       //HISTORY
       for (let i = 1; i < 6; i++) {
-        console.log("peticion para history");
         let ayer = moment.unix(resultClimaCiudad.dt).subtract(i, "days").unix();
         await cityWeaterHistory(
           ayer,
