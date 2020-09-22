@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from "react";
 import axios from "axios";
 import moment from "moment-timezone";
 
-const appKey = "99e5a727399494fe7125f8efc37bc137";
+const appKey = "";
 const formatoHora = "h:mm a";
 
 //Estado Inicial
