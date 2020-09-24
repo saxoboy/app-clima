@@ -155,30 +155,6 @@ const WeatherProvider = ({ children }) => {
         payload: resultClimaCiudad,
       });
     }
-
-    // else {
-
-    //   const nameCity = state.name;
-    //   const resultClimaCiudad = await getWeatherCity(nameCity); //clima de hoy
-    //   //SEVEN DAYS
-    //   await cityWeaterSevenDays(
-    //     resultClimaCiudad.coord_lon,
-    //     resultClimaCiudad.coord_lat
-    //   );
-    //   //HISTORY
-    //   for (let i = 1; i < 6; i++) {
-    //     let ayer = moment.unix(resultClimaCiudad.dt).subtract(i, 'days').unix()
-    //     await cityWeaterHistory(
-    //       ayer,
-    //       resultClimaCiudad.coord_lon,
-    //       resultClimaCiudad.coord_lat
-    //     );
-    //   }
-    //   dispatch({
-    //     type: "CITY_DATA_WEATHER_DEFAULT",
-    //     payload: resultClimaCiudad,
-    //   });
-    // }
   };
 
   //CONSULTA 7 DIAS DE CLIMA
@@ -198,11 +174,6 @@ const WeatherProvider = ({ children }) => {
       payload: resultClimaHistoria,
     });
   };
-
-  //ejecutamos cityWeather
-  // useEffect(() => {
-  //   cityWeater();
-  // }, []);
 
   return (
     <Context.Provider
